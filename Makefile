@@ -1,3 +1,9 @@
+PROVIDER_NAME = phpipam
+BIN_DIRECTORY   = _bin
+DEV_BIN_DIRECTORY = _bin
+LOCAL_BIN_DIRECTORY = /usr/local/bin
+EXECUTABLE_NAME = terraform-provider-$(PROVIDER_NAME)
+
 test:
 	go test -v $(shell go list ./... | grep -v /vendor/) 
 
@@ -21,3 +27,11 @@ deps:
 
 clean:
 	rm -rf pkg/
+
+# Peform a LOCAL development (current-platform-only) build.
+local: version fmt
+	go build -o $(LOCAL_BIN_DIRECTORY)/$(EXECUTABLE_NAME)
+
+# Peform a development (current-platform-only) build.
+dev: version fmt
+	go build -o $(DEV_BIN_DIRECTORY)/$(EXECUTABLE_NAME)

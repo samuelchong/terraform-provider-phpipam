@@ -27,7 +27,7 @@ const (
 
 // contentMD5 computes and sets the HTTP Content-MD5 header for requests that
 // require it.
-func contentMD5(r *request.Request) {
+func contentMD5_xxx(r *request.Request) {
 	h := md5.New()
 
 	if !aws.IsReaderSeekable(r.Body) {
