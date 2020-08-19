@@ -3,12 +3,12 @@ package phpipam
 import (
 	"log"
 
-	"github.com/pavel-z1/phpipam-sdk-go/controllers/addresses"
-	"github.com/pavel-z1/phpipam-sdk-go/controllers/sections"
-	"github.com/pavel-z1/phpipam-sdk-go/controllers/subnets"
-	"github.com/pavel-z1/phpipam-sdk-go/controllers/vlans"
-	"github.com/pavel-z1/phpipam-sdk-go/phpipam"
-	"github.com/pavel-z1/phpipam-sdk-go/phpipam/session"
+	"github.com/samuelchong/phpipam-sdk-go/controllers/addresses"
+	"github.com/samuelchong/phpipam-sdk-go/controllers/sections"
+	"github.com/samuelchong/phpipam-sdk-go/controllers/subnets"
+	"github.com/samuelchong/phpipam-sdk-go/controllers/vlans"
+	"github.com/samuelchong/phpipam-sdk-go/phpipam"
+	"github.com/samuelchong/phpipam-sdk-go/phpipam/session"
 )
 
 // Config provides the configuration for the PHPIPAM provider.
@@ -58,7 +58,6 @@ func (c *Config) Client() (interface{}, error) {
 		Endpoint: c.Endpoint,
 		Password: c.Password,
 		Username: c.Username,
-		Insecure: c.Insecure,
 	}
 	log.Printf("[DEBUG] Initializing PHPIPAM controllers")
 	sess := session.NewSession(cfg)

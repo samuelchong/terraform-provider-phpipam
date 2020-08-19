@@ -3,10 +3,11 @@ package phpipam
 import (
 	"errors"
 	"fmt"
+	"github.com/samuelchong/phpipam-sdk-go/phpipam"
 	"strconv"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/pavel-z1/phpipam-sdk-go/phpipam"
+
 )
 
 // resourcePHPIPAMAddress returns the resource structure for the phpipam_address

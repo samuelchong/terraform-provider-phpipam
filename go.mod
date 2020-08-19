@@ -1,9 +1,8 @@
-module github.com/lord-kyron/terraform-provider-phpipam
+module github.com/samuelchong/terraform-provider-phpipam
 
-go 1.13
+go 1.12
 
 require (
-	github.com/hashicorp/terraform-plugin-sdk v1.12.0
-	github.com/imdario/mergo v0.3.9
-	github.com/pavel-z1/phpipam-sdk-go v0.0.0-20200516074937-3a7bd299a171
+	github.com/hashicorp/terraform-plugin-sdk v1.15.0
+	github.com/samuelchong/phpipam-sdk-go v0.0.0-20170420144001-da4fad4844c8
 )

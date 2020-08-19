@@ -118,9 +118,9 @@ func resourcePHPIPAMFirstFreeAddressCreate(d *schema.ResourceData, meta interfac
 	// Get address controller and start address creation
 	c := meta.(*ProviderPHPIPAMClient).addressesController
 
-	in := expandAddress(d)
+	// in := expandAddress(d)
 
-	out, err := c.CreateFirstFreeAddress(subnet_id, in)
+	out, err := c.CreateFirstFreeAddress(subnet_id)
 	if err != nil {
 		return err
 	}

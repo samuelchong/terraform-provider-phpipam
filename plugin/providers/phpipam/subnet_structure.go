@@ -6,8 +6,8 @@ import (
 	"strconv"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/pavel-z1/phpipam-sdk-go/controllers/subnets"
-	"github.com/pavel-z1/phpipam-sdk-go/phpipam"
+	"github.com/samuelchong/phpipam-sdk-go/controllers/subnets"
+	"github.com/samuelchong/phpipam-sdk-go/phpipam"
 )
 
 // resourceSubnetOptionalFields represents all the fields that are optional in
@@ -120,6 +120,30 @@ func bareSubnetSchema() map[string]*schema.Schema {
 	}
 }
 
+// resourceSubnetSchema returns the schema for the phpipam_first_free_subnet resource. It
+// sets the required and optional fields, the latter defined in
+// resourceSubnetRequiredFields, and ensures that all optional and
+// non-configurable fields are computed as well.
+func resourceFirstFreeSubnetSchema() map[string]*schema.Schema {
+	schema := bareSubnetSchema()
+	for k, v := range schema {
+		switch {
+		// Subnet Address and Mask are currently ForceNew
+		case k == "master_subnet_id" || k == "subnet_mask" :
+			v.Required = true
+			v.ForceNew = true
+		case k == "custom_fields":
+			v.Optional = true
+		case resourceSubnetOptionalFields.Has(k):
+			v.Optional = true
+			v.Computed = true
+		default:
+			v.Computed = true
+		}
+	}
+	return schema
+}
+
 // resourceSubnetSchema returns the schema for the phpipam_subnet resource. It
 // sets the required and optional fields, the latter defined in
 // resourceSubnetRequiredFields, and ensures that all optional and
@@ -225,8 +249,6 @@ func expandSubnet(d *schema.ResourceData) subnets.Subnet {
 		IsFull:         phpipam.BoolIntString(d.Get("is_full").(bool)),
 		Threshold:      d.Get("utilization_threshold").(int),
 		Location:       d.Get("location_id").(int),
-		Gateway:	d.Get("gateway").(map[string]interface {}),
-		GatewayID:        d.Get("gateway_id").(string),
 	}
 
 	return s
@@ -259,8 +281,8 @@ func flattenSubnet(s subnets.Subnet, d *schema.ResourceData) {
 	d.Set("utilization_threshold", s.Threshold)
 	d.Set("location_id", s.Location)
 	d.Set("edit_date", s.EditDate)
-	d.Set("gateway", s.Gateway)
-	d.Set("gateway_id", s.GatewayID)
+	//d.Set("gateway", s.Gateway)
+	//d.Set("gateway_id", s.GatewayID)
 }
 
 // subnetDescriptionMatchSchema returns a *schema.Schema for description
