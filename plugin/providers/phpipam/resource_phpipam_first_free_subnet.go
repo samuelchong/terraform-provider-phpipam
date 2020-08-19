@@ -54,6 +54,7 @@ func resourcePHPIPAMFirstFreeSubnetCreate(d *schema.ResourceData, meta interface
 		if _, err := c.UpdateSubnetCustomFields(subnets[0].ID, customFields.(map[string]interface{})); err != nil {
 			return err
 		}
+		d.Set("gateway", subnets[0].Gateway)
 	}
 	return dataSourcePHPIPAMSubnetRead(d, meta)
 }

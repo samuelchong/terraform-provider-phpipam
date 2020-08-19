@@ -43,6 +43,8 @@ func dataSourcePHPIPAMSubnetsRead(d *schema.ResourceData, meta interface{}) erro
 
 	d.SetId(strconv.Itoa(sum))
 	err = d.Set("subnet_ids", ids)
+
+
 	if err != nil {
 		return err
 	}

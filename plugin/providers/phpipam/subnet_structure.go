@@ -108,12 +108,12 @@ func bareSubnetSchema() map[string]*schema.Schema {
 		"edit_date": &schema.Schema{
 			Type: schema.TypeString,
 		},
-                "gateway": &schema.Schema{
-                        Type: schema.TypeMap,
-                },
-                "gateway_id": &schema.Schema{
-                        Type: schema.TypeString,
-                },
+		//"gateway": &schema.Schema{
+		//	Type: schema.TypeMap,
+		//},
+		//"gateway_id": &schema.Schema{
+		//	Type: schema.TypeString,
+		//},
 		"custom_fields": &schema.Schema{
 			Type: schema.TypeMap,
 		},

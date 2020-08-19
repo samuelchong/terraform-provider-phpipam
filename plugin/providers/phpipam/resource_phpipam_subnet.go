@@ -63,8 +63,10 @@ func resourcePHPIPAMSubnetUpdate(d *schema.ResourceData, meta interface{}) error
 	// implies that the subnet will be either split or renamed, which is not
 	// supported by UpdateSubnet. These are implemented in the API but not in the
 	// SDK, so support may be added at a later time.
-	in.SubnetAddress = ""
-	in.Mask = 0
+
+	//in.SubnetAddress = ""
+	// in.Mask = 0
+
 	if _, err := c.UpdateSubnet(in); err != nil {
 		return err
 	}

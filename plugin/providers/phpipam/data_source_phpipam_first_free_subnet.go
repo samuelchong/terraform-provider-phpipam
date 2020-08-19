@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"errors"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"log"
 )
 
 func dataSourcePHPIPAMFirstFreeSubnet() *schema.Resource {
@@ -28,6 +29,7 @@ func dataSourcePHPIPAMFirstFreeSubnet() *schema.Resource {
 
 func dataSourcePHPIPAMFirstFreeSubnetRead(d *schema.ResourceData, meta interface{}) error {
 	c := meta.(*ProviderPHPIPAMClient).subnetsController
+	log.Printf("XXX master subnet id %d", d.Get("master_subnet_id"))
 	out, err := c.GetFirstFreeSubnet(d.Get("master_subnet_id").(int),d.Get("subnet_mask").(int))
 	if err != nil {
 		return err
